@@ -10,7 +10,7 @@ A utility library for filtering and sorting posts by status, tag, date, and titl
 
 ### `filterByStatus`
 
-- **Input:** `posts: Post[]`, `status: PostStatus`
+- **Input:** `posts: Post[]`, `status: PostStatus` <- Maybe we should mentions the possible values here:  'draft' | 'published' otherwise we have to look it up. 
 - **Output:** `Post[]`
 - **Description:** Returns a new list of Posts that's filtered by Status
 
@@ -18,19 +18,19 @@ A utility library for filtering and sorting posts by status, tag, date, and titl
 
 - **Input:** `posts: Post[]`, `tag:string`
 - **Output:** `Post[]`
-- **Description:** Returns a new list of Posts that's filtered by Tag
+- **Description:** Returns a new list of Posts that's filtered by Tag <-- This a little vague are you matching the tag or do we get posts that contain the tag? 
 
 ### `sortByDate`
 
 - **Input:** `posts: Post[]`, `direction?: 'asc' | 'desc'`
 - **Output:** `Post[]`
-- **Description:** Returns a new list of Posts sorted by date. Defaults to `'desc'` (newest first) if no direction is provided.
+- **Description:** Returns a new list of Posts sorted by date. Defaults to `'desc'` (newest first) if no direction is provided. <-- When you say date here, what are we talking about, is that a date object, ISO date, UTC, date string? You will want to talk with anyone else who is working with dates, If you can get the team to recogonize the format that would be good. 
 
 ### `sortByTitle`
 
 - **Input:** `posts: Post[]`, `direction?: 'asc' | 'desc'`
 - **Output:** `Post[]`
-- **Description:** Returns a new list of Posts sorted by Title. Defaults to `'asc'` (A → Z) if no direction is provided.
+- **Description:** Returns a new list of Posts sorted by Title. Defaults to `'asc'` (A → Z) if no direction is provided. <-- Is this case sensistive sort or not? 
 
 # Example Usage
 
@@ -77,6 +77,8 @@ const result = sortByDate(filterByStatus(posts, "draft"));
 ```
 
 # Design Notes
+
+! Most important is that these functions do not mutate, they must return new arrays, the functions should be "pure" ! 
 
 - Decided to return a new array instead of mutating the current array for filter and sort for performance issue. If the user wants to access the original array, then there's multiple API calls that needs to happen instead of just referring to the original array
 - Chose `asc | desc` as direction instead of boolean. It would be difficult for users to ascertain whether `true` is for ascending or descending order. Avoiding "magic booleans"
