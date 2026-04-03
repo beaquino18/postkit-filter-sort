@@ -58,3 +58,29 @@ const byDate = sortByDate(posts)
 // sort by date oldest first
 const byDateAsc = sortByDate(posts, 'asc')
 ```
+
+# Edge Cases
+
+- **Empty array:** If `posts` is empty, all functions return `[]`
+
+- **Case sensitivity (`filterByTag`):** Tags are normalized to lowercase
+  before matching. `'Popular'` will match posts tagged `'popular'`
+
+- **Tie breaking (`sortByDate`, `sortByTitle`):** If two posts share
+  the same date or title, they are sorted by `id` as a tiebreaker
+
+- **Combining filter and sort:** Functions can be chained — the caller
+  controls the order:
+
+```ts
+const result = sortByDate(filterByStatus(posts, "draft"));
+```
+
+# Design Notes
+
+- Decided to return a new array instead of mutating the current array for filter and sort for performance issue. If the user wants to access the original array, then there's multiple API calls that needs to happen instead of just referring to the original array
+- Chose `asc | desc` as direction instead of boolean. It would be difficult for users to ascertain whether `true` is for ascending or descending order. Avoiding "magic booleans"
+- Direction is optional with a default because requiring it every time
+  would be inconvenient. Most users of a publishing app want to see the
+  newest posts first, so `sortByDate` defaults to `'desc'` and
+  `sortByTitle` defaults to `'asc'` (A → Z) for natural alphabetical reading.
