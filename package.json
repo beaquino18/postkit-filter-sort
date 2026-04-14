@@ -1,0 +1,24 @@
+{
+  "name": "postkit-filter-sort",
+  "version": "1.0.0",
+  "description": "A utility library for filtering and sorting posts",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beaquino18/postkit-filter-sort.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beaquino18/postkit-filter-sort/issues"
+  },
+  "homepage": "https://github.com/beaquino18/postkit-filter-sort#readme",
+  "devDependencies": {
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4"
+  }
+}
